@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
+import React from 'react';
 
-function BasicGrid() {
-  useEffect(() => {
-    document.title = 'Viral | Pages | Basic Grid';
-  }, []);
-  return (
-    <div>
+class BasicGrid extends React.Component {
+  componentDidMount() {
+    document.title = 'Basic Grid';
+  }
+
+  render() {
+    return (
+      <div>
       {/* ===== BREADCRUMB BANNER ===== */}
       <div className="wrapper row2 bgded" style={{ backgroundImage: "url('/layout/images/demo/backgrounds/01.png')" }}>
         <div className="overlay">
@@ -68,6 +70,7 @@ function BasicGrid() {
       </div>
     </div>
   );
+}
 }
 
 export default BasicGrid;

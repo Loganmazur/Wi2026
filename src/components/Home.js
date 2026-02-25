@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 function Home() {
   useEffect(() => {
-    document.title = 'Viral';
+    document.title = 'Viral Home';
   }, []);
   return (
     <div>

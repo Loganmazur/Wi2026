@@ -1,11 +1,13 @@
-import { useEffect } from 'react';
+import React from 'react';
 
-function Gallery() {
-  useEffect(() => {
-    document.title = 'Viral | Pages | Gallery';
-  }, []);
-  return (
-    <div>
+class Gallery extends React.Component {
+  componentDidMount() {
+    document.title = 'Gallery';
+  }
+
+  render() {
+    return (
+      <div>
       {/* ===== BREADCRUMB BANNER ===== */}
       <div className="wrapper row2 bgded" style={{ backgroundImage: "url('/layout/images/demo/backgrounds/01.png')" }}>
         <div className="overlay">
@@ -71,6 +73,7 @@ function Gallery() {
       </div>
     </div>
   );
+}
 }
 
 export default Gallery;

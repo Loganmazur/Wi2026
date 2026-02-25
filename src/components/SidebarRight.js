@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 function SidebarRight() {
   useEffect(() => {
-    document.title = 'Viral | Pages | Sidebar Right';
+    document.title = 'Sidebar Right';
   }, []);
   return (
     <div>

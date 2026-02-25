@@ -1,8 +1,10 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Footer() {
-  return (
-    <div>
+class Footer extends React.Component {
+  render() {
+    return (
+      <div>
       <div className="wrapper row5">
         <footer id="footer" className="clear">
           <div className="one_quarter first">
@@ -57,6 +59,7 @@ function Footer() {
       </div>
     </div>
   );
+}
 }
 
 export default Footer;

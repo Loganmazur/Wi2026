@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 function FullWidth() {
   useEffect(() => {
-    document.title = 'Viral | Pages | Full Width';
+    document.title = 'Full Width';
   }, []);
   return (
     <div>

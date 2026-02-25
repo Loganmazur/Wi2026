@@ -13,7 +13,7 @@ function Contact() {
     message: ''
   });
   useEffect(() => {
-    document.title = 'Viral | Pages | Contact';
+    document.title = 'Contact';
   }, []);
 
   const countries = [
