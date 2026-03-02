@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
+import PageTitle from './PageTitle';
 
 function Home() {
-  useEffect(() => {
-    document.title = 'Viral Home';
-  }, []);
   return (
     <div>
+      <PageTitle title="Viral" />
 {/* ===== HERO SECTION ===== */}
 <div className="wrapper row2 bgded" style={{ backgroundImage: "url('/layout/images/demo/backgrounds/01.png')" }}>
   <div className="overlay">

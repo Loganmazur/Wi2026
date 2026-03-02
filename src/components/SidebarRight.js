@@ -1,24 +1,13 @@
-import { useEffect } from 'react';
+import React from 'react';
+import Breadcrumb from './Breadcrumb';
+import PageTitle from './PageTitle';
+import CommentForm from './CommentForm';
 
 function SidebarRight() {
-  useEffect(() => {
-    document.title = 'Sidebar Right';
-  }, []);
   return (
     <div>
-      {/* ===== BREADCRUMB BANNER ===== */}
-      <div className="wrapper row2 bgded" style={{ backgroundImage: "url('/layout/images/demo/backgrounds/01.png')" }}>
-        <div className="overlay">
-          <div id="breadcrumb" className="clear">
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Lorem</a></li>
-              <li><a href="#">Ipsum</a></li>
-              <li><a href="#">Sidebar Right</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <PageTitle title="Viral | Pages | Sidebar Right" />
+      <Breadcrumb title="Sidebar Right" />
 
       {/* ===== MAIN CONTENT ===== */}
       <div className="wrapper row3">
@@ -117,32 +106,8 @@ function SidebarRight() {
                   </article>
                 </li>
               </ul>
-
               {/* ===== WRITE A COMMENT FORM ===== */}
-              <h2>Write A Comment</h2>
-              <form action="#" method="post">
-                <div className="one_third first">
-                  <label htmlFor="name">Name <span>*</span></label>
-                  <input type="text" name="name" id="name" defaultValue="" />
-                </div>
-                <div className="one_third">
-                  <label htmlFor="email">Mail <span>*</span></label>
-                  <input type="text" name="email" id="email" defaultValue="" />
-                </div>
-                <div className="one_third">
-                  <label htmlFor="url">Website</label>
-                  <input type="text" name="url" id="url" defaultValue="" />
-                </div>
-                <div className="block clear">
-                  <label htmlFor="comment">Your Comment</label>
-                  <textarea name="comment" id="comment" cols="25" rows="10"></textarea>
-                </div>
-                <div>
-                  <input name="submit" type="submit" value="Submit Form" />
-                  &nbsp;
-                  <input name="reset" type="reset" value="Reset Form" />
-                </div>
-              </form>
+              <CommentForm heading="Write A Comment" />
             </div>
           </div>
 

@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import Breadcrumb from './Breadcrumb';
+import PageTitle from './PageTitle';
 
 
 function Contact() {
@@ -108,18 +110,8 @@ function Contact() {
 return (
     <div>
       {/* ===== BREADCRUMB BANNER WITH BACKGROUND IMAGE ===== */}
-      <div className="wrapper row2 bgded" style={{ backgroundImage: "url('/layout/images/demo/backgrounds/01.png')" }}>
-        <div className="overlay">
-          <div id="breadcrumb" className="clear">
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Lorem</a></li>
-              <li><a href="#">Ipsum</a></li>
-              <li><Link to="/contact">Contact Us</Link></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+        <PageTitle title="Viral | Pages | Contact" />
+        <Breadcrumb title="Contact Us" />
 
       {/* ===== CONTACT FORM SECTION ===== */}
       <div className="wrapper row3">

@@ -1,26 +1,14 @@
 import React from 'react';
+import Breadcrumb from './Breadcrumb';
+import PageTitle from './PageTitle';
 
 class Gallery extends React.Component {
-  componentDidMount() {
-    document.title = 'Gallery';
-  }
-
   render() {
     return (
       <div>
-      {/* ===== BREADCRUMB BANNER ===== */}
-      <div className="wrapper row2 bgded" style={{ backgroundImage: "url('/layout/images/demo/backgrounds/01.png')" }}>
-        <div className="overlay">
-          <div id="breadcrumb" className="clear">
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Lorem</a></li>
-              <li><a href="#">Ipsum</a></li>
-              <li><a href="#">Gallery</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+        {/* ===== PARENT PASSING PROPS TO CHILDREN ===== */}
+        <PageTitle title="Pages | Gallery" />
+        <Breadcrumb title="Gallery" />
 
       {/* ===== MAIN CONTENT ===== */}
       <div className="wrapper row3">

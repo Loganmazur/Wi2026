@@ -1,26 +1,13 @@
 import React from 'react';
+import Breadcrumb from './Breadcrumb';
+import PageTitle from './PageTitle';
 
 class BasicGrid extends React.Component {
-  componentDidMount() {
-    document.title = 'Basic Grid';
-  }
-
   render() {
     return (
       <div>
-      {/* ===== BREADCRUMB BANNER ===== */}
-      <div className="wrapper row2 bgded" style={{ backgroundImage: "url('/layout/images/demo/backgrounds/01.png')" }}>
-        <div className="overlay">
-          <div id="breadcrumb" className="clear">
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Lorem</a></li>
-              <li><a href="#">Ipsum</a></li>
-              <li><a href="#">Basic Grid</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+        <PageTitle title="Viral | Pages | Basic Grid" />
+        <Breadcrumb title="Basic Grid" />
 
       {/* ===== MAIN CONTENT ===== */}
       <div className="wrapper row3">
