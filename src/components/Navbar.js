@@ -1,8 +1,27 @@
 import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import SearchBar from './SearchBar';
+import blogData from '../blogData';
 
-function Navbar() {
+
+function Navbar({ userName }) {
   const location = useLocation();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [results, setResults] = useState([]);
 
+function handleSearch(e) {
+  const value = e.target.value;
+  setSearchTerm(value);
+  if (value === '') {
+    setResults([]);
+  } else {
+    const filtered = blogData.filter(post =>
+      post.title.toLowerCase().includes(value.toLowerCase()) ||
+      post.author.toLowerCase().includes(value.toLowerCase())
+    );
+    setResults(filtered);
+  }
+}
   return (
     <div>
       <div className="wrapper row0">
@@ -13,24 +32,30 @@ function Navbar() {
               <li><i className="fa fa-envelope-o"></i> info@domain.com</li>
             </ul>
           </div>
-          <div className="fl_right">
-            <ul className="faico clear">
-              <li><a className="faicon-facebook" href="#"><i className="fa fa-facebook"></i></a></li>
-              <li><a className="faicon-pinterest" href="#"><i className="fa fa-pinterest"></i></a></li>
-              <li><a className="faicon-twitter" href="#"><i className="fa fa-twitter"></i></a></li>
-              <li><a className="faicon-dribble" href="#"><i className="fa fa-dribbble"></i></a></li>
-              <li><a className="faicon-linkedin" href="#"><i className="fa fa-linkedin"></i></a></li>
-              <li><a className="faicon-google-plus" href="#"><i className="fa fa-google-plus"></i></a></li>
-              <li><a className="faicon-rss" href="#"><i className="fa fa-rss"></i></a></li>
-            </ul>
-          </div>
+<div className="fl_right" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+  <SearchBar
+    searchTerm={searchTerm}
+    onSearch={handleSearch}
+    results={results}
+  />
+  <ul className="faico clear">
+    <li><a className="faicon-facebook" href="#"><i className="fa fa-facebook"></i></a></li>
+    <li><a className="faicon-pinterest" href="#"><i className="fa fa-pinterest"></i></a></li>
+    <li><a className="faicon-twitter" href="#"><i className="fa fa-twitter"></i></a></li>
+    <li><a className="faicon-dribble" href="#"><i className="fa fa-dribbble"></i></a></li>
+    <li><a className="faicon-linkedin" href="#"><i className="fa fa-linkedin"></i></a></li>
+    <li><a className="faicon-google-plus" href="#"><i className="fa fa-google-plus"></i></a></li>
+    <li><a className="faicon-rss" href="#"><i className="fa fa-rss"></i></a></li>
+  </ul>
+</div>
         </div>
       </div>
 
       <div className="wrapper row1">
         <header id="header" className="clear">
           <div id="logo" className="fl_left">
-            <h1><Link to="/">Viral</Link></h1>
+            {/* UPDATED - shows Welcome, (name)! once popup is submitted */}
+            <h1><Link to="/">{userName ? `Welcome, ${userName}!` : 'Welcome'}</Link></h1>
           </div>
           <nav id="mainav" className="fl_right">
             <ul className="clear">

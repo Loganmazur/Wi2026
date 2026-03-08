@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './components/Home';
@@ -9,29 +9,40 @@ import FullWidth from './components/FullWidth';
 import Gallery from './components/Gallery';
 import SidebarLeft from './components/SidebarLeft';
 import SidebarRight from './components/SidebarRight';
+import NamePopup from './components/NamePopup';
 import './App.css';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
-
   return null;
 }
 
 function App() {
+  const [userName, setUserName] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+
   useEffect(() => {
     if (window.$) {
       window.$(window).trigger('resize');
     }
+    setTimeout(() => {
+      setShowPopup(true);
+    }, 2000);
   }, []);
 
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Navbar />
+      {showPopup && (
+        <NamePopup onSubmit={(name) => {
+          setUserName(name);
+          setShowPopup(false);
+        }} />
+      )}
+      <Navbar userName={userName} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
@@ -42,7 +53,6 @@ function App() {
         <Route path="/sidebar-right" element={<SidebarRight />} />
       </Routes>
       <Footer />
-      {/* BACK TO TOP BUTTON */}
       <a id="backtotop" href="#top"><i className="fa fa-chevron-up"></i></a>
     </BrowserRouter>
   );
