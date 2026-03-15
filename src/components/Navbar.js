@@ -54,7 +54,7 @@ function handleSearch(e) {
       <div className="wrapper row1">
         <header id="header" className="clear">
           <div id="logo" className="fl_left">
-            {/* UPDATED - shows Welcome, (name)! once popup is submitted */}
+            {/* Welcome, (name)! once popup is submitted */}
             <h1><Link to="/">{userName ? `Welcome, ${userName}!` : 'Welcome'}</Link></h1>
           </div>
           <nav id="mainav" className="fl_right">

@@ -10,6 +10,7 @@ import Gallery from './components/Gallery';
 import SidebarLeft from './components/SidebarLeft';
 import SidebarRight from './components/SidebarRight';
 import NamePopup from './components/NamePopup';
+import CookieBanner from './components/CookieBanner';
 import './App.css';
 
 function ScrollToTop() {
@@ -23,6 +24,14 @@ function ScrollToTop() {
 function App() {
   const [userName, setUserName] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const [showCookie, setShowCookie] = useState(() => {
+  return !localStorage.getItem('cookieAccepted');
+});
+
+function handleCookieAccept() {
+  localStorage.setItem('cookieAccepted', 'true');
+  setShowCookie(false);
+}
 
   useEffect(() => {
     if (window.$) {
@@ -54,6 +63,8 @@ function App() {
       </Routes>
       <Footer />
       <a id="backtotop" href="#top"><i className="fa fa-chevron-up"></i></a>
+      {/* COOKIE CONSENT BANNER */}
+      {showCookie && <CookieBanner onAccept={handleCookieAccept} />}
     </BrowserRouter>
   );
 }

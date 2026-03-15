@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Breadcrumb from './Breadcrumb';
 import PageTitle from './PageTitle';
-
+import FormInput from './FormInput';
+import FormConfirmation from './FormConfirmation';
 
 function Contact() {
   const [charCount, setCharCount] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,9 +15,14 @@ function Contact() {
     topic: '',
     message: ''
   });
+
+  const confirmationRef = useRef(null);
+
   useEffect(() => {
-    document.title = 'Contact';
-  }, []);
+    if (submitted && confirmationRef.current) {
+      confirmationRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [submitted]);
 
   const countries = [
     "United States", "Canada", "Mexico", "United Kingdom",
@@ -66,29 +72,6 @@ function Contact() {
     return true;
   }
 
-  // ===== DISPLAY METHODS =====
-  function displayTopicMessage(topic) {
-    const messages = {
-      general: 'Thank you! Your general inquiry has been received.',
-      sales: 'Thank you! Your sales inquiry has been received.',
-      support: 'Thank you! Your support request has been received.',
-      feedback: 'Thank you! Your feedback has been received.'
-    };
-    alert(messages[topic]);
-  }
-
-  function displaySubmissionSummary(data) {
-    alert(
-      'Form Submitted Successfully!\n\n' +
-      'Name: ' + data.name + '\n' +
-      'Email: ' + data.email + '\n' +
-      'Phone: ' + (data.phone || 'Not provided') + '\n' +
-      'Country: ' + data.country + '\n' +
-      'Topic: ' + data.topic + '\n' +
-      'Message: ' + data.message
-    );
-  }
-
   // ===== HANDLE SUBMIT =====
   function handleSubmit(e) {
     e.preventDefault();
@@ -103,15 +86,14 @@ function Contact() {
 
     if (!isValid) return;
 
-    displayTopicMessage(formData.topic);
-    displaySubmissionSummary(formData);
+    setSubmitted(true);
   }
 
-return (
+  return (
     <div>
-      {/* ===== BREADCRUMB BANNER WITH BACKGROUND IMAGE ===== */}
-        <PageTitle title="Viral | Pages | Contact" />
-        <Breadcrumb title="Contact Us" />
+      {/* ===== BREADCRUMB BANNER ===== */}
+      <PageTitle title="Viral | Pages | Contact" />
+      <Breadcrumb title="Contact Us" />
 
       {/* ===== CONTACT FORM SECTION ===== */}
       <div className="wrapper row3">
@@ -121,16 +103,31 @@ return (
             <h2>Write a Comment</h2>
             <form name="contactForm" onSubmit={handleSubmit}>
               <div className="one_third first">
-                <label htmlFor="name">Name <span>*</span></label>
-                <input type="text" name="name" id="name" onChange={handleChange} />
+                <FormInput
+                  label="Name"
+                  name="name"
+                  type="text"
+                  onChange={handleChange}
+                  required={true}
+                />
               </div>
               <div className="one_third">
-                <label htmlFor="email">Email <span>*</span></label>
-                <input type="text" name="email" id="email" onChange={handleChange} />
+                <FormInput
+                  label="Email"
+                  name="email"
+                  type="text"
+                  onChange={handleChange}
+                  required={true}
+                />
               </div>
               <div className="one_third">
-                <label htmlFor="phone">Phone</label>
-                <input type="text" name="phone" id="phone" onChange={handleChange} />
+                <FormInput
+                  label="Phone"
+                  name="phone"
+                  type="text"
+                  onChange={handleChange}
+                  required={false}
+                />
               </div>
               <div className="block">
                 <label htmlFor="country">Country <span>*</span></label>
@@ -143,7 +140,6 @@ return (
                   ))}
                 </select>
               </div>
-
               <div className="block">
                 <label htmlFor="topic">Topic <span>*</span></label>
                 <select id="topic" name="topic" onChange={handleChange} value={formData.topic}>
@@ -156,7 +152,6 @@ return (
                   <option value="feedback">Feedback</option>
                 </select>
               </div>
-
               <div className="block clear">
                 <label htmlFor="message">Message <span>*</span></label>
                 <textarea
@@ -168,12 +163,18 @@ return (
                 ></textarea>
                 <p>{charCount} / 500</p>
               </div>
-
               <div>
                 <input type="submit" value="Submit Form" />
                 <input type="reset" value="Reset Form" />
               </div>
             </form>
+
+            {/* ===== CONFIRMATION - SHOWS AFTER SUBMIT ===== */}
+            {submitted && (
+              <div ref={confirmationRef}>
+                <FormConfirmation formData={formData} />
+              </div>
+            )}
           </div>
         </main>
       </div>
